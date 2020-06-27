@@ -8,11 +8,10 @@ const runModular = () => {
 }
 
 const generateLfo = target => {
-    if (target.value === 0) {
-      target.value = 1;
-    } else {
-      target.value = 0;
-    }
+  if (target.value === 0) {
+    target.value = 1;
+  } else {
+    target.value = 0;
   }
 }
 
@@ -47,7 +46,7 @@ const initLfo = () => {
   for (lfo in modular.quadLfo) {
     lfo.intervalID = setInterval(
       generateLfo(lfo), 
-      lfo.interval.rate
+      lfo.rate
     );
   }
 }
