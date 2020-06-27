@@ -1,5 +1,5 @@
 const defaultModular = {  
-  clockDivider = {
+  clockDivider: {
     clockInput: null,
     dividers: {
       two: {
