@@ -1,10 +1,10 @@
-const modular = {};
-const bpm = 120;
-const on = false;
+import defaultModular from "default_modular";
 
-const runModular = () => {
-  initLfo();
-  initClockDivider();
+const modular = defaultModular;
+
+const initModular = modular => {
+  initQuadLfo(modular.quadLfo);
+
 }
 
 const generateLfo = target => {
@@ -15,35 +15,8 @@ const generateLfo = target => {
   }
 }
 
-const initLfo = () => {
-  modular.quadLfo = {
-    one: {
-      value: 0,
-      rate: 100,
-      intervalID: null,
-      outputTarget: null,
-    },
-    two: {
-      value: 0,
-      rate: 100,
-      intervalID: null,
-      outputTarget: null,
-    },
-    three: {
-      value: 0,
-      rate: 100,
-      intervalID: null,
-      outputTarget: null
-    },
-    four: {
-      value: 0,
-      rate: 100,
-      intervalID: null,
-      outputTarget: null
-    }
-  }
-
-  for (lfo in modular.quadLfo) {
+const initQuadLfo = quadLfo => {
+  for (lfo in quadLfo) {
     lfo.intervalID = setInterval(
       generateLfo(lfo), 
       lfo.rate
@@ -51,18 +24,12 @@ const initLfo = () => {
   }
 }
 
-const initClockDivider = () => {
-  modular.clockDivider = {
-    clockInput: null,
-    dividers: {
-      two: null,
-      four: null,
-      eight: null,
-      sixteen: null,
-      thirtyTwo: null,
-      sixtyFour: null
-    } 
+const connectClockDivider = clockDivider => {
+  const input = modular.quadLfo.one;
+
+  for (divider in clockDivider.dividers) {
+    divider.output = input / divider.division;
   }
 }
 
-runModular();
+initModular();
