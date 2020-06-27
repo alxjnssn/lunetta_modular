@@ -4,21 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lunetta Modular</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <main id="lunetta-modular">
     <form id="quad-lfo">
       <label for="lfo-control-one" id="lfo-display-one"></label>
-      <input id="lfo-control-one" type="range" data-lfo-id="one">
+      <input id="lfo-control-one" class="lfo-control" type="range" data-lfo-id="one" min="0" max="1000">
+      
       <label for="lfo-control-two" id="lfo-display-two"></label>
-      <input id="lfo-control-two" type="range" data-lfo-id="two">
+      <input id="lfo-control-two" class="lfo-control" type="range" data-lfo-id="two" min="0" max="1000">
+      
       <label for="lfo-control-three" id="lfo-display-three"></label>
-      <input id="lfo-control-three" type="range" data-lfo-id="three">
+      <input id="lfo-control-three" class="lfo-control" type="range" data-lfo-id="three" min="0" max="1000">
+      
       <label for="lfo-control-four" id="lfo-display-four"></label>
-      <input id="lfo-control-four" type="range" data-lfo-id="four">
+      <input id="lfo-control-four" class="lfo-control" type="range" data-lfo-id="four" min="0" max="1000">
     </section>
   </main>
-
   <script src="index.js"></script>
 </body>
 </html>

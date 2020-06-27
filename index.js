@@ -1,4 +1,12 @@
-const modular =  {  
+const audioContext = new window.AudioContext();
+
+const modular =  {
+  oscillatorBank: {
+    one: audioContext.createOscillator(),
+    two: audioContext.createOscillator(),
+    three: audioContext.createOscillator(),
+    four: audioContext.createOscillator(),
+  },
   clockDivider: {
     clockInput: null,
     dividers: {
@@ -31,13 +39,13 @@ const modular =  {
   quadLfo: {
     one: {
       value: 0,
-      rate: 200,
+      rate: 500,
       intervalID: null,
       outputTarget: null,
     },
     two: {
       value: 0,
-      rate: 400,
+      rate: 500,
       intervalID: null,
       outputTarget: null,
     },
@@ -49,7 +57,7 @@ const modular =  {
     },
     four: { 
       value: 0,
-      rate: 600,
+      rate: 500,
       intervalID: null,
       outputTarget: null
     }
@@ -60,7 +68,7 @@ const initModular = modular => {
   initQuadLfo(modular.quadLfo);
   setInterval(() => {
     refreshDisplay(modular)
-  }, 100)
+  }, 1)
 }
 
 const refreshDisplay = modular => {
@@ -98,9 +106,11 @@ const connectQuadLfoControls = quadLfo => {
   }
 }
 
-const updateLfoRate = (newLfoRate, lfo) => {
+const updateLfoRate = (controlValue, lfo) => {
+  const interprettedRate = (1000 - controlValue) / 2;
+
   clearInterval(modular.quadLfo[lfo].intervalID);
-  modular.quadLfo[lfo].rate = newLfoRate;
+  modular.quadLfo[lfo].rate = interprettedRate;
 
   modular.quadLfo[lfo].intervalID = setInterval(() => {
       generateLfo(modular.quadLfo[lfo])
